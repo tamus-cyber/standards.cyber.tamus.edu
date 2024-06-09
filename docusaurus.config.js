@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Texas A&M University System Cybersecurity Standards',
+  //tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -41,22 +41,39 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/tamus-cyber/standards.cyber.tamus.edu/tree/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
         },
       }),
+    ],
+  ],
+
+  plugins: [
+    'docusaurus-lunr-search',
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          // /docs/oldDoc -> /docs/newDoc
+          {
+            to: '/catalog/families',
+            from: '/catalog',
+          },
+        ],
+      },
     ],
   ],
 
@@ -66,70 +83,79 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Cybersecurity Standards',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Texas A&M System Cybersecurity Logo',
+          src: 'img/tamus-logo.svg',
         },
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'catalogSidebar',
             position: 'left',
             label: 'Control Standards Catalog',
           },
+          {
+            type: 'docSidebar',
+            sidebarId: 'guidelinesSidebar',
+            position: 'left',
+            label: 'Guidelines',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'resourcesSidebar',
+            position: 'left',
+            label: 'Resources',
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/tamus-cyber/standards.cyber.tamus.edu',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Required Links',
             items: [
               {
-                label: 'Security Control Standards Catalog',
-                to: '/docs/catalog',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'State of Texas',
+                href: 'https://www.texas.gov/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Texas Homeland Security',
+                href: 'https://gov.texas.gov/organization/hsgd',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Texas Veterans Portal',
+                href: 'https://veterans.portal.texas.gov/',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Risk, Fraud & Misconduct Hotline',
+                href: 'https://secure.ethicspoint.com/domain/media/en/gui/19681/index.html',
+              },
+              {
+                label: 'Privacy',
+                href: 'https://www.tamus.edu/marcomm/reports/privacy/',
+              },
+              {
+                label: 'State Link Policy',
+                href: 'https://dir.texas.gov/resource-library-item/state-website-linking-privacy-policy?id=21',
+              },
+              {
+                label: 'Web Accessibility',
+                href: 'https://www.tamus.edu/marcomm/reports/accessibility/',
+              },
+              {
+                label: 'Campus Carry',
+                href: 'https://www.tamus.edu/system/campus-carry-rules/',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} The Texas A&M University System. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

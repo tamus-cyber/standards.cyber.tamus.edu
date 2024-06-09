@@ -86,14 +86,16 @@ root = tree.getroot()
 
 families = root.findall("{http://csrc.nist.gov/ns/oscal/1.0}group")
 
+if os.path.exists("families"):
+	shutil.rmtree("families")
+
+os.mkdir("families")
+
 for family in families:
 
-	if os.path.exists(family.get('id')) and os.path.isdir(family.get('id')):
-		shutil.rmtree(family.get('id'))
+	os.mkdir("families/%s" % (family.get('id')))
 
-	os.mkdir(family.get('id'))
-
-	f = open(family.get('id') + "/index.md", "w")
+	f = open("families/%s/index.md" % (family.get('id')), "w")
 
 	f.write("# %s - %s\n" % (family.get('id').upper(), family.find('{http://csrc.nist.gov/ns/oscal/1.0}title').text))
 
@@ -105,7 +107,7 @@ for family in families:
 				if (prop.get('name') == "sort-id"):
 					sort_id = prop.get('value')
 
-			f = open("%s/%s.md" % (family.get('id'), sort_id), "w")
+			f = open("families/%s/%s.md" % (family.get('id'), sort_id), "w")
 
 			f.write(returnControl(control))
 

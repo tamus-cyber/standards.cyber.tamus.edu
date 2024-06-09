@@ -8,8 +8,8 @@ Help()
 	echo
 }
 
-mvn -f $1/pom.xml exec:java -Dexec.mainClass="net.sf.saxon.Transform" -Dexec.args="-xsl:oscal-populate-inserts.xsl -s:$2 -o:$3"
+mvn -f $1/pom.xml exec:java -Dexec.mainClass="net.sf.saxon.Transform" -Dexec.args="-xsl:oscal-populate-inserts.xsl -s:$2 -o:/tmp/catalog.xml"
 
-python3 generate-catalog.py --source=$3
+python3 generate-catalog.py --source=/tmp/catalog.xml
 
-#rm $3
+rm /tmp/catalog.xml
