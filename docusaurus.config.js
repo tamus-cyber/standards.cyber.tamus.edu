@@ -63,17 +63,6 @@ const config = {
 
   plugins: [
     'docusaurus-lunr-search',
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [
-          {
-            to: '/catalog/families',
-            from: '/catalog',
-          },
-        ],
-      },
-    ],
   ],
 
   themeConfig:
