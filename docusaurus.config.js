@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Texas A&M University System Cybersecurity Standards',
+  title: 'Texas A&M System Cybersecurity Standards',
   //tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
@@ -71,17 +71,20 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Cybersecurity Standards',
+        //title: 'Cybersecurity Standards',
         logo: {
           alt: 'Texas A&M System Cybersecurity Logo',
-          src: 'img/tamus-logo.svg',
+          src: 'img/tamus-cyber-logo.svg',
+          srcDark: 'img/tamus-cyber-logo-white.svg',
+          href: 'https://cyber.tamus.edu',
         },
         items: [
+          {to: '/', label: 'Home', position: 'left'},
           {
             type: 'docSidebar',
             sidebarId: 'catalogSidebar',
             position: 'left',
-            label: 'Control Standards Catalog',
+            label: 'Catalog',
           },
           {
             type: 'docSidebar',
