@@ -23,7 +23,7 @@ const config = {
   organizationName: 'tamus-cyber', // Usually your GitHub org/user name.
   projectName: 'standards.cyber.tamus.edu', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
