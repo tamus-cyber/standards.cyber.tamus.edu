@@ -1,5 +1,4 @@
 ---
-layout: full-width
 title: Online Privacy Standard
 ---
 

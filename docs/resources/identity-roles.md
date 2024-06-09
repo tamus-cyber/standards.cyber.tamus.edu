@@ -1,5 +1,4 @@
 ---
-layout: full-width
 title: Identity Role Examples
 ---
 

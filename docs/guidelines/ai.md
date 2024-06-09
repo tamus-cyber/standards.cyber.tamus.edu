@@ -1,5 +1,4 @@
 ---
-layout: full-width
 title: Artificial Intelligence
 ---
 
@@ -45,8 +44,6 @@ Because of the inscrutability of AI systems in general, it is important to under
 ## Confidential Information
 
 * AI platforms are not approved for processing confidential information and therefore must not have any personally identifying, sensitive personal, regulated, confidential, proprietary, or controlled unclassified information submitted or exposed to it.
-
-## References
 
 [^1]: [NIST AI 100-1, Artificial Intelligence Risk Management Framework (AI RMF 1.0), January 2023](https://doi.org/10.6028/NIST.AI.100-1).
 [^2]: [Texas A&M University System Data Categorization Standard](/guidelines/data-categorization).
