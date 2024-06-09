@@ -91,6 +91,12 @@ if os.path.exists("families"):
 
 os.mkdir("families")
 
+f = open("families/index.md", "w")
+
+f.write("# Security Control Standards Catalog\n\nStuff here.")
+
+f.close()
+
 for family in families:
 
 	os.mkdir("families/%s" % (family.get('id')))

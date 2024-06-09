@@ -67,7 +67,6 @@ const config = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // /docs/oldDoc -> /docs/newDoc
           {
             to: '/catalog/families',
             from: '/catalog',
