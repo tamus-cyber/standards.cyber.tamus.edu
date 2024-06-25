@@ -1,6 +1,6 @@
 import argparse, json, os, shutil, xml.etree.ElementTree as ET
 
-custom_edit_url = "https://github.com/tamus-cyber/standards.cyber.tamus.edu/tree/main/content/tamus.edu/TAMUS_profile.xml"
+custom_edit_url = "https://github.com/tamus-cyber/standards.cyber.tamus.edu/tree/main/static/content/tamus.edu/TAMUS_profile.xml"
 
 intro_text = """The security control standards catalog provides protective measures for systems, organizations, and
 individuals. The controls are designed to facilitate risk management and compliance with applicable laws, policies,
@@ -63,11 +63,38 @@ def returnControl(control):
 	string = "# %s %s {#%s}\n\n" % (title['label'], title['title'], control.find("{http://csrc.nist.gov/ns/oscal/1.0}prop[@name='sort-id']").attrib['value'])
 
 	for prop in control.findall('{http://csrc.nist.gov/ns/oscal/1.0}prop'):
-		if (prop.get('name') == "status" and prop.get('value') == "withdrawn"):
-			string += "**_[Withdrawn]_**\n\n"
-			
+		if (prop.get('name') == "implementation-level"):
+			string += "_Implementation Level_: %s" % (prop.get('value'))
+
+		if (prop.get('name') == "contributes-to-assurance"):
+			string += "_Contributes to Assurance_: %s" % (prop.get('value'))
+
+		if (prop.get('name') == "tx_baseline"):
+			string += "_Texas DIR Baseline_: %s" % (prop.get('value'))
+
+		if (prop.get('name') == "tamus_baseline"):
+			string += "_Texas A&M System Baseline_: %s" % (prop.get('value'))
+
+		if (prop.get('name') == "tx_required_by"):
+			string += "_Texas DIR Required By_: %s" % (prop.get('value'))
+
+		if (prop.get('name') == "tamus_required_by"):
+			string += "_Texas A&M System Required By_: %s" % (prop.get('value'))
+
 	for part in control.findall('{http://csrc.nist.gov/ns/oscal/1.0}part'):
 		if (part.get('name') == "statement"):
+			string += "### Control\n\n"
+
+			string += returnStatement(part)
+
+		if (part.get('name') == "tx_implementation" and part.findall('{http://csrc.nist.gov/ns/oscal/1.0}p')):
+			string += "### Texas DIR Implementation Statement\n\n"
+
+			string += returnStatement(part)
+
+		if (part.get('name') == "tamus_implementation" and part.findall('{http://csrc.nist.gov/ns/oscal/1.0}p')):
+			string += "### Texas A&M System Implementation Statement\n\n"
+
 			string += returnStatement(part)
 
 	for enhancement in control.findall('{http://csrc.nist.gov/ns/oscal/1.0}control'):
@@ -83,10 +110,19 @@ def returnEnhancement(enhancement):
 	string = "## %s %s {#%s}\n\n" % (title['label'], title['title'], enhancement.find("{http://csrc.nist.gov/ns/oscal/1.0}prop[@name='sort-id']").attrib['value'])
 
 	for part in enhancement.findall('{http://csrc.nist.gov/ns/oscal/1.0}part'):
-		if (part.get('name') == "withdrawn-status"):
-			string += ("%s\n\n" % (part.text))
-
 		if (part.get('name') == "statement"):
+			string += "### Control\n\n"
+
+			string += returnStatement(part)
+
+		if (part.get('name') == "tx_implementation" and part.findall('{http://csrc.nist.gov/ns/oscal/1.0}p')):
+			string += "### Texas DIR Implementation Statement\n\n"
+
+			string += returnStatement(part)
+
+		if (part.get('name') == "tamus_implementation" and part.findall('{http://csrc.nist.gov/ns/oscal/1.0}p')):
+			string += "### Texas A&M System Implementation Statement\n\n"
+
 			string += returnStatement(part)
 
 	return string
@@ -150,10 +186,6 @@ for family in families:
 	f = open("%s/%s/_category_.json" % (catalog_dir, family.get('id')), "w")
 
 	f.write(json.dumps(data))
-
-	#f.write("# %s - %s\n\n" % (family.get('id').upper(), family.find('{http://csrc.nist.gov/ns/oscal/1.0}title').text))
-
-	#f.write("import DocCardList from '@theme/DocCardList';\n\n<DocCardList />")
 
 	f.close()
 

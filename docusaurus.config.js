@@ -76,10 +76,8 @@ const config = {
           alt: 'Texas A&M System Cybersecurity Logo',
           src: 'img/tamus-cyber-logo.svg',
           srcDark: 'img/tamus-cyber-logo-white.svg',
-          href: 'https://cyber.tamus.edu',
         },
         items: [
-          {to: '/', label: 'Home', position: 'left'},
           {
             type: 'docSidebar',
             sidebarId: 'catalogSidebar',
